@@ -1,5 +1,6 @@
 # ReinforcementLearning-FlappyBird
 i will upload the preview soon
+
 AI learn to play Flappy Bird by Genetic Algorithm.
 
 
