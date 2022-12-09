@@ -8,10 +8,14 @@ In this project, we explore the use of a genetic algorithm combined with a neura
 
 Reinforcement learning is a type of machine learning that focuses on training agents to make decisions that maximize a specific reward. In the context of the popular game Flappy Bird, this could mean teaching a computer to play the game in a way that achieves the highest possible score. In this project, we use a combination of a genetic algorithm and a neural network to create a reinforcement learning system that can do just that.
 
+
 The genetic algorithm is a powerful optimization technique that can be used to search for the best solution to a given problem. In our case, the problem is finding the weights and biases of a neural network that allow it to play Flappy Bird as well as possible. The genetic algorithm starts with a population of potential solutions, which we can think of as a group of different neural networks with randomly assigned weights and biases. These networks are then evaluated based on their performance in the game, and the best ones are selected to reproduce and create a new generation. This process is repeated over many generations, allowing the population to evolve and improve until it reaches a high level of performance.
+
+![svg](https://user-images.githubusercontent.com/67343196/206804470-5756f7d8-6a08-44dc-b0e7-376b725f8fc9.svg)
 
 The neural network is a simple model with only one hidden layer and five input parameters. These inputs are the distance to the nearest pipe, the height difference between the bird and the center of the next pair of pipes, the width of the tube, and the dimension of the bird. These parameters are used to make decisions about whether the bird should flap its wings or not, allowing it to navigate through the obstacles and reach the highest score possible.
 
 The program allows us to customize the number of nodes in the hidden layer and the population size in each iteration. This means we can fine-tune the system to find the optimal configuration that works best for the game. In addition, the genetic algorithm allows us to incorporate other factors, such as the bird's previous actions and the game's difficulty, into the decision-making process, allowing for even more sophisticated learning.
 
 Overall, combining a genetic algorithm and a neural network provides a powerful approach to reinforcement learning in Flappy Bird. By allowing the machine to self-learn and adapt to the game dynamics, this system can achieve a high level of performance and maximize the score achieved in the game.
+
