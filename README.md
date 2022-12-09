@@ -11,7 +11,7 @@ Reinforcement learning is a type of machine learning that focuses on training ag
 
 The genetic algorithm is a powerful optimization technique that can be used to search for the best solution to a given problem. In our case, the problem is finding the weights and biases of a neural network that allow it to play Flappy Bird as well as possible. The genetic algorithm starts with a population of potential solutions, which we can think of as a group of different neural networks with randomly assigned weights and biases. These networks are then evaluated based on their performance in the game, and the best ones are selected to reproduce and create a new generation. This process is repeated over many generations, allowing the population to evolve and improve until it reaches a high level of performance.
 
-![svg-cropped](https://user-images.githubusercontent.com/67343196/206805227-7e6981cc-6bfe-46a8-bf4b-15e20a290d6f.svg)
+<img src="https://user-images.githubusercontent.com/67343196/206805227-7e6981cc-6bfe-46a8-bf4b-15e20a290d6f.svg" alt="drawing" style="width:200px;"/>
 
 The neural network is a simple model with only one hidden layer and five input parameters. These inputs are the distance to the nearest pipe, the height difference between the bird and the center of the next pair of pipes, the width of the tube, and the dimension of the bird. These parameters are used to make decisions about whether the bird should flap its wings or not, allowing it to navigate through the obstacles and reach the highest score possible.
 
