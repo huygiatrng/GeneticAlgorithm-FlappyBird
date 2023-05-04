@@ -43,7 +43,8 @@ class Game:
         self.generation_list.append(self.generation)
 
         # region Collect data
-        print("Literations: ", self.generation + 1)
+        # print("Literations: ", self.generation + 1)
+
         print(self.average_fitness_list)
         print(self.best_fitness_list)
         print(self.generation_list)
@@ -83,8 +84,7 @@ class Game:
         if len(self.all_birds) != 0:  # update best __score__:
             self.__display_text__("Best score: " + str(self.__score__), 10, 10, 20, WHITE)
 
-        if self.tubeBottom.rect.x <= WIDTH / 2 - TUBE_WIDTH - BIRD_SIZE[
-            0]:  # increase score if bird pass through a tube
+        if self.tubeBottom.rect.x <= WIDTH / 2 - TUBE_WIDTH - BIRD_SIZE[0]:  # increase score if bird pass through a tube
             self.all_barrier.remove()
             self.tubeTop, self.tubeBottom = self.barrier_factory.generate("Tube")
             self.all_barrier.add(self.tubeBottom)
@@ -92,7 +92,7 @@ class Game:
             self.all_barrier.add(self.barrier_factory.generate("Ground"))
             self.ground.kill()
             for sprite in self.all_sprites:
-                if isinstance(sprite, Ground):
+                if isinstance(sprite,Ground):
                     sprite.kill()
             self.all_sprites.add(self.all_barrier)
 
@@ -104,10 +104,10 @@ class Game:
                 self.all_sprites.remove(bird)
             bird.sensor.detect(bird, self.tubeTop, self.tubeBottom)
             output_NN = bird.NeurolNetwork.feed_forward(np.array([[bird.sensor.dist_vertical],
-                                                                  [bird.sensor.dist_horizontal],
-                                                                  [TUBE_WIDTH],
-                                                                  [BIRD_SIZE[0]],
-                                                                  [BIRD_SIZE[1]]]))
+                                                        [bird.sensor.dist_horizontal],
+                                                        [TUBE_WIDTH],
+                                                        [BIRD_SIZE[0]],
+                                                        [BIRD_SIZE[1]]]))
             if output_NN > THRESHOLD:
                 bird.flap()
         self.all_sprites.update()
@@ -139,8 +139,8 @@ class Game:
         # print ("all_birds: " + str(len(self.all_birds)))
         # print ("all sprites: " + str(len(self.all_sprites)))
         # print ("all barrier: " +str(len(self.all_barrier)))
-        bground = pg.transform.scale(Background, (WIDTH, Background.get_height() * WIDTH / Background.get_width()))
-        self.screen.blit(bground, [0, 0])
+
+        self.screen.blit(Background, [0, 0])
         for bird in self.__bird_list__:
             if bird.live == 1:
                 pg.draw.line(self.screen, YELLOW,
@@ -168,15 +168,13 @@ class Game:
             for bird in self.__bird_list__:
                 if bird.live == 1:
                     count_bird_alive += 1
+            #  Test
             if self.__score__ >= self.__maxscore__:
                 self.__maxscore__ = self.__score__
-            self.__display_text__("Best score: " + str(self.__maxscore__) + " (" + str(self.__score__) + ") ",
-                                  int(HEIGHT / 8), int(WIDTH / 40),
-                                  int(HEIGHT / 20), WHITE)
-            self.__display_text__("Literations: " + str(self.generation), int(HEIGHT / 8), int(WIDTH / 12),
-                                  int(HEIGHT / 20), WHITE)
-            self.__display_text__("Birds alive: " + str(count_bird_alive), int(HEIGHT / 8), int(WIDTH / 7),
-                                  int(HEIGHT / 20), WHITE)
+            self.__display_text__("Best score: " + str(self.__maxscore__) + " (" + str(self.__score__) + ") ", 75, 10,
+                                  30, WHITE)
+            self.__display_text__("Literations: " + str(self.generation), 75, 30, 30, WHITE)
+            self.__display_text__("Birds alive: " + str(count_bird_alive), 75, 50, 30, WHITE)
         pg.display.flip()
 
     def run(self):
@@ -194,8 +192,8 @@ class Game:
         self.__game_playing__ = False
         pg.display.set_caption("Flappy Bird AI")
         while not self.__game_playing__:
-            self.__display_text__("Flappy Bird", WIDTH / 3 - 20, HEIGHT / 3, int(WIDTH / 8), YELLOW)
-            self.__display_text__("Press Enter to Start!", WIDTH / 3 - 25, HEIGHT / 2, int(HEIGHT / 20), WHITE)
+            self.__display_text__("Flappy Bird", WIDTH / 3 - 20, HEIGHT / 3, 50, YELLOW)
+            self.__display_text__("Press Enter to Start!", WIDTH / 3 - 25, HEIGHT / 2, 30, WHITE)
             pg.display.flip()
             for event in pg.event.get():
                 if event.type == pg.QUIT:

@@ -1,15 +1,13 @@
 from settings import *
 
 vec2 = pg.math.Vector2
-
-
 class Tube(pg.sprite.Sprite):
-    def __init__(self, x, y, w, h, direction):
+    def __init__(self,x,y,w,h,direction):
         pg.sprite.Sprite.__init__(self)
         # self.image = pg.Surface((w,h))
         self.image = tube_img
         self.image = pg.transform.scale(self.image, (w, h))
-        if direction == 0:
+        if direction==0:
             self.image = pg.transform.flip(self.image, False, True)
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -22,5 +20,6 @@ class Tube(pg.sprite.Sprite):
     def update(self):
         self.rect.x += self.velX
         # If a tube goes of the screen then it is 'killed'
-        if self.rect.x + WIDTH / 4 < 0:
+        if self.rect.x + 100 < 0:
             self.kill()
+
