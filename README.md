@@ -18,3 +18,21 @@ This project explores the use of a genetic algorithm combined with a neural netw
 ```bash
 git clone https://github.com/huygiatrng/GeneticAlgorithm-FlappyBird/
 ```
+2. Navigate to the project directory
+
+```bash
+cd GeneticAlgorithm-FlappyBird
+```
+## Usage
+
+1. Run the main.py file to start the Flappy Bird game and watch the AI learn how to play.
+
+```bash
+python main.py
+```
+
+2. The program will run through generations, updating the neural network's weights and biases. The AI's performance should improve over time.
+
+## Customization
+You can customize the number of nodes in the hidden layer and the population size in each iteration by modifying the '**settings.py**' file. This allows you to fine-tune the system to find the optimal configuration that works best for the game. In addition, the genetic algorithm allows you to incorporate other factors, such as the bird's previous actions and the game's difficulty, into the decision-making process, allowing for even more sophisticated learning.
+
