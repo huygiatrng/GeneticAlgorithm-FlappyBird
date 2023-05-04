@@ -21,7 +21,13 @@ This project explores the use of a genetic algorithm combined with a neural netw
 ```bash
 git clone https://github.com/huygiatrng/GeneticAlgorithm-FlappyBird/
 ```
-2. Navigate to the project directory
+
+2. Install dependencies
+```bash
+pip install requirements.txt
+```
+
+3. Navigate to the project directory
 
 ```bash
 cd GeneticAlgorithm-FlappyBird
