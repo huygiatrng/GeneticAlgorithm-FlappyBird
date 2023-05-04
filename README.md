@@ -16,5 +16,5 @@ This project explores the use of a genetic algorithm combined with a neural netw
 ## Installation
 1. Clone this repository
 ```bash
-git clone https://github.com/yourusername/flappy-bird-ai.git
+git clone https://github.com/huygiatrng/GeneticAlgorithm-FlappyBird/
 ```
