@@ -7,7 +7,6 @@ This project explores the use of a genetic algorithm combined with a neural netw
 - [Installation](#installation)
 - [Usage](#usage)
 - [Customization](#customization)
-- [License](#license)
 
 ## Requirements
 - Python 3.x
