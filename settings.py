@@ -53,7 +53,7 @@ MUTATION_PERCENTAGE = 0.60 #0.55
 CROSSOVER_PERCENTAGE = 0.1 #0.15
 #RANDOM_RATE = 0.20
 
-Background = pg.image.load('images/background2.png')
+Background = pg.image.load('images/background.png')
 Background_width, Background_height = Background.get_size()
 
 # Calculate scaling factors
