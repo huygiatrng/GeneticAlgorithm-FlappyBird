@@ -14,34 +14,31 @@ class NeurolNetwork:
         if genome is not None:
             self.decode(genome)
 
-    def __sigmoid(self, np_array):
-        return 1.0 / (1.0 + np.exp(-1.0 * np_array))
+    def __relu(self, np_array):
+        return np.maximum(0, np_array)
+
+    def __leaky_relu(self, np_array):
+        return np.maximum(0.01 * np_array, np_array)
 
     def __regularize_input(self, list_input):
         if np.shape(list_input) != (INPUT_LAYER, 1):
             sys.exit('INPUT to Neural Nets doesnt match')
 
-        sum = np.sum(abs(list_input))
-
-        for array in list_input:
-            if sum == 0:
-                array[0] = 0
-            else:
-                array[0] = array[0] / sum
+        return list_input / np.linalg.norm(list_input)
 
     def feed_forward(self, list_input):
         if np.shape(list_input) != (INPUT_LAYER, 1):
             sys.exit('INPUT to Neural Nets doesnt match')
 
-        self.__regularize_input(list_input)
+        regularized_input = self.__regularize_input(list_input)
 
-        nodes_hidden_layer = np.dot(self.weight1, np.concatenate((np.array([[1]]), list_input), axis=0))
+        nodes_hidden_layer = np.dot(self.weight1, np.concatenate((np.array([[1]]), regularized_input), axis=0))
 
-        activation_hidden_layer = self.__sigmoid(nodes_hidden_layer)
+        activation_hidden_layer = self.__relu(nodes_hidden_layer)
 
         node_output_layer = np.dot(self.weight2, np.concatenate((np.array([[1]]), activation_hidden_layer), axis=0))
 
-        return self.__sigmoid(node_output_layer)
+        return self.__relu(node_output_layer)
 
     def encode(self):
 
@@ -69,10 +66,14 @@ class NeurolNetwork:
     @classmethod
     def selection(cls, bird_list):
         elite_birds_copy = []
-        elite_birds = bird_list[0:round(SELECTION_PERCENTAGE * POPULATION)]
 
-        for bird in elite_birds:
-            gen = bird.NeurolNetwork.encode()
+        for _ in range(round(SELECTION_PERCENTAGE * POPULATION)):
+            # Select k random birds
+            k = 4
+            contenders = random.sample(bird_list, k)
+            # Choose the bird with the highest fitness
+            winner = max(contenders, key=lambda bird: bird.NeurolNetwork.fitness)
+            gen = winner.NeurolNetwork.encode()
             elite_birds_copy.append(Bird_Class.Bird(gen))
 
         return elite_birds_copy
@@ -80,13 +81,17 @@ class NeurolNetwork:
     @classmethod
     def mutation(cls, bird):
         gen = bird.NeurolNetwork.encode()
+        bird_fitness = bird.NeurolNetwork.fitness
+        max_fitness = max([bird.NeurolNetwork.fitness for bird in bird_list])
+
+        # Calculate adaptive mutation rate
+        adaptive_mutation_rate = MUTATION_RATE * (1 - bird_fitness / max_fitness)
 
         for i in range(TOTAL_WEIGHT):
-            if (np.random.rand(0, 100) < MUTATION_RATE * 100):
+            if np.random.rand(0, 100) < adaptive_mutation_rate * 100:
                 gen[i] = np.random.uniform(-1, 1)
 
         new_bird = Bird_Class.Bird(gen)
-
         return new_bird
 
     @classmethod
