@@ -15,6 +15,7 @@ This project explores the use of a genetic algorithm combined with a neural netw
 ## Requirements
 - Python 3.x
 - NumPy
+- Pygame
 
 ## Installation
 1. Clone this repository
